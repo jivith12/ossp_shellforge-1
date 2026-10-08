@@ -9,6 +9,7 @@
 #include "signals.h"
 #include "pipes.h"
 #include "redirect.h"
+#include "thread.h"
 
 static void tokenize(char *str, char **argv)
 {
@@ -28,6 +29,7 @@ int main(void)
     char **tokens;
 
     initialize_signals();
+    start_monitor_thread();
 
     printf("=====================================\n");
     printf("%s Version %s\n", SHELL_NAME, VERSION);
