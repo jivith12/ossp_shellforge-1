@@ -8,6 +8,7 @@
 #include "builtin.h"
 #include "signals.h"
 #include "pipes.h"
+#include "redirect.h"
 
 static void tokenize(char *str, char **argv)
 {
@@ -78,7 +79,10 @@ int main(void)
             {
                 if (execute_builtin(tokens) == 0)
                 {
-                    execute(tokens);
+                    if (execute_redirection(tokens) == 0)
+                    {
+                        execute(tokens);
+                    }
                 }
             }
             free_tokens(tokens);
