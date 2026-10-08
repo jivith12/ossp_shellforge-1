@@ -15,6 +15,10 @@ $(TARGET): $(SRC)
 	mkdir -p bin
 	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
 
+asan: $(SRC)
+	mkdir -p bin
+	$(CC) $(CFLAGS) -fsanitize=address $(SRC) -o $(TARGET)
+
 run: $(TARGET)
 	./$(TARGET)
 
