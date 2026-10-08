@@ -5,6 +5,7 @@
 #include "input.h"
 #include "parser.h"
 #include "process.h"
+#include "builtin.h"
 
 int main(void)
 {
@@ -29,7 +30,10 @@ int main(void)
         tokens = parse_line(line);
         if (tokens[0] != NULL)
         {
-            execute(tokens);
+            if (execute_builtin(tokens) == 0)
+            {
+                execute(tokens);
+            }
         }
 
         free_tokens(tokens);
